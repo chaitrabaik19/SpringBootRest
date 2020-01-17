@@ -2,7 +2,7 @@
 added a rest api with spring boot CRUD opertaions
 
 Document aims at suppporting the RESTFUL API's
->Application has built with Spring boot, maven frameworks.
+>Application has built with Spring boot, maven frameworks.with STS ide.
 >RESTFUL api supports GET,PUT,POST,DELETE mappings 
 
 Rest controllers and URLS :
@@ -129,6 +129,10 @@ To consume all above api end points we have created a simple javascript ,html pa
 5)on refresh of this page will recall the api call, and again once the button is clicked , the call to api will be done.
 
 this GUI can be enhanced with css and also can be embeded into spring project to make a clear sepearation of concerns using MVC architecture.
+
+
+API documentation link created with postman : 
+https://web.postman.co/collections/10092027-616c8392-20d6-4dfe-8fe5-422bd78673d8/publish?version=latest&workspace=2a85469b-7de9-4ce5-8fa4-5a4d7acbb214#content
 
 
 

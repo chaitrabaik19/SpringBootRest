@@ -34,7 +34,7 @@ function loadXMLDoc() {
 	
     }
   };
-  xhttp.open("GET", "http://localhost:8081/people", true);
+  xhttp.open("GET", "http://localhost:8081/app/people", true);
   xhttp.send();
 }
 function constructTable(selector) { 
@@ -86,7 +86,7 @@ function constructTable(selector) {
 				
 				
 			} 
-			header.append($('<th/>').html("sample"))
+			
 			// Appending the header to the table 
 			$(selector).append(header); 
 				return columns; 
