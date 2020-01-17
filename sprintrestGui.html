@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Basic Rest Interface</h2>
+<script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> 
+	</script> 
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css">
+<div id="demo">
+<button type="button" onclick="loadXMLDoc()">Get People Records</button>
+</div>
+
+	<button onclick = "constructTable('#table')"> 
+		Show in Table
+	</button> 
+<table align = "center"
+			id="table" border="1"> 
+	</table> 
+<script>
+
+var list ;
+function loadXMLDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+ 
+ console.log(this.responseText)
+    if (this.readyState == 4 && this.status == 200) {
+	 list = JSON.parse(this.responseText)
+	console.log("------",list)
+      document.getElementById("demo").innerHTML =this.responseText;
+	  
+	
+    }
+  };
+  xhttp.open("GET", "http://localhost:8081/people", true);
+  xhttp.send();
+}
+function constructTable(selector) { 
+			
+			// Getting the all column names 
+			var cols = Headers(list, selector); 
+
+			// Traversing the JSON data 
+			for (var i = 0; i < list.length; i++) { 
+				var row = $('<tr/>'); 
+				for (var colIndex = 0; colIndex < cols.length; colIndex++) 
+				{ 
+					var val = list[i][cols[colIndex]]; 
+					
+					// If there is any key, which is matching 
+					// with the column name 
+					if (val == null && colIndex ==cols.length ) row.append($('<input type="checkbox" name="name1" />')); 
+					
+						row.append($('<td/>').html(val)); 
+						
+						
+				} 
+				
+				// Adding each row to the table 
+				$(selector).append(row); 
+			} 
+		} 
+		
+		function Headers(list, selector) { 
+			var columns = []; 
+			var header = $('<tr/>'); 
+			var s = " "
+			//list.push(s)
+			
+			for (var i = 0; i < list.length; i++) { 
+				var row = list[i]; 
+				
+				for (var k in row) { 
+					if ($.inArray(k, columns) == -1) { 
+						columns.push(k); 
+						console.log(k)
+						// Creating the header 
+						header.append($('<th/>').html(k)); 
+					} 
+					
+				} 
+				//var header = $('<tr/>'); 
+				
+				
+				
+			} 
+			header.append($('<th/>').html("sample"))
+			// Appending the header to the table 
+			$(selector).append(header); 
+				return columns; 
+		}
+
+</script>
+
+</body>
+</html>
